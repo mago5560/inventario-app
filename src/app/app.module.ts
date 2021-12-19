@@ -32,6 +32,16 @@ import { TipomovimientoComponent } from './pages/tipomovimiento/tipomovimiento.c
 import { TipomovimientotecleoComponent } from './pages/tipomovimiento/tipomovimientotecleo/tipomovimientotecleo.component';
 import { UnidadmedidaComponent } from './pages/unidadmedida/unidadmedida.component';
 import { UnidadmedidatecleoComponent } from './pages/unidadmedida/unidadmedidatecleo/unidadmedidatecleo.component';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { ClientetecleoComponent } from './pages/cliente/clientetecleo/clientetecleo.component';
+import { ProveedorComponent } from './pages/proveedor/proveedor.component';
+import { ProveedortecleoComponent } from './pages/proveedor/proveedortecleo/proveedortecleo.component';
+import { LaboratorioComponent } from './pages/laboratorio/laboratorio.component';
+import { LaboratoriotecleoComponent } from './pages/laboratorio/laboratoriotecleo/laboratoriotecleo.component';
+import { PorcentajedescuentoComponent } from './pages/porcentajedescuento/porcentajedescuento.component';
+import { PorcentajedescuentotecleoComponent } from './pages/porcentajedescuento/porcentajedescuentotecleo/porcentajedescuentotecleo.component';
+import { ProveedorlaboratorioComponent } from './pages/proveedorlaboratorio/proveedorlaboratorio.component';
+import { ProveedorlaboratoriotecleoComponent } from './pages/proveedorlaboratorio/proveedorlaboratoriotecleo/proveedorlaboratoriotecleo.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -81,7 +91,17 @@ export function tokenGetter() {
     TipomovimientoComponent,
     TipomovimientotecleoComponent,
     UnidadmedidaComponent,
-    UnidadmedidatecleoComponent
+    UnidadmedidatecleoComponent,
+    ClienteComponent,
+    ClientetecleoComponent,
+    ProveedorComponent,
+    ProveedortecleoComponent,
+    LaboratorioComponent,
+    LaboratoriotecleoComponent,
+    PorcentajedescuentoComponent,
+    PorcentajedescuentotecleoComponent,
+    ProveedorlaboratorioComponent,
+    ProveedorlaboratoriotecleoComponent
     //cuando se controle todo
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

@@ -1,0 +1,176 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body"></div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="center col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Proveedor Tecleo</h3>
+            </div>
+            <div class="col-4 text-right">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="cerrar()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-2">
+              <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-nombre"
+                      >Nombre</label
+                    >
+                    <input
+                      type="text"
+                      id="input-nombre"
+                      [(ngModel)]="cls.nombres"
+                      name="nombres"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Nombres"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-apellido"
+                      >Apellido</label
+                    >
+                    <input
+                      type="text"
+                      id="input-apellido"
+                      [(ngModel)]="cls.apellidos"
+                      name="apellidos"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Apellidos"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-nit"
+                      >NIT</label
+                    >
+                    <input
+                      type="number"
+                      id="input-nit"
+                      [(ngModel)]="cls.nit"
+                      name="nit"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese NIT"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-telefono"
+                      >Telefono</label
+                    >
+                    <input
+                      type="number"
+                      id="input-telefono"
+                      name="telefono"
+                      [(ngModel)]="cls.telefono"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Telefono"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label
+                      class="form-control-label"
+                      for="input-nombreComercial"
+                      >Nombre Comercial</label
+                    >
+                    <input
+                      type="text"
+                      id="input-nombreComercial"
+                      name="nombreComercial"
+                      [(ngModel)]="cls.nombreComercial"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Nombre Comercial"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-direccion"
+                      >Direccion</label
+                    >
+                    <input
+                      type="text"
+                      id="input-direccion"
+                      name="direccion"
+                      [(ngModel)]="cls.direccion"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Direccion"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email"
+                      >Correo Electronico</label
+                    >
+                    <input
+                      type="email"
+                      id="input-email"
+                      name="email"
+                      [(ngModel)]="cls.email"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Telefono"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col-12 text-right">
+                  <a class="btn btn-lg btn-danger" (click)="cerrar()"
+                    >Cancelar</a
+                  >
+                  <a class="btn btn-lg btn-primary" (click)="grabar()"
+                    >Grabar</a
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

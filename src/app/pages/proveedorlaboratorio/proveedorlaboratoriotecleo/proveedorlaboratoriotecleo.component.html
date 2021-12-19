@@ -10,7 +10,7 @@
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">Tipo de Movimiento Tecleo</h3>
+              <h3 class="mb-0">Proveedor Laboratorio Tecleo</h3>
             </div>
             <div class="col-4 text-right">
               <button
@@ -28,48 +28,43 @@
           <form>
             <div class="pl-lg-2">
               <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-descripcion"
-                      >Descripcion</label
+                    <label class="form-control-label" for="select-laboratorio"
+                      >Seleccione Laboratorio</label
                     >
-                    <input
-                      type="text"
-                      id="input-descripcion"
-                      [(ngModel)]="cls.descripcion"
-                      name="descripcion"
+                    <select
+                      id="select-laboratorio"
+                      name="laboratorio"
+                      [(ngModel)]="selectLaboratorio"
                       class="form-control form-control-alternative"
-                      placeholder="Ingrese descripcion"
-                    />
+                      *ngFor="let _laboratorio of datosLaboratorio"
+                    >
+                      <option value="{{ _laboratorio.idLaboratorio }}">
+                        {{ _laboratorio.nombre }}
+                      </option>
+                    </select>
                   </div>
                 </div>
               </div>
-              <div class="pl-lg-2">
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="form-group">
-                      <div
-                        class="
-                          custom-control
-                          custom-control-alternative
-                          custom-checkbox
-                        "
-                      >
-                        <input
-                          class="custom-control-input"
-                          [(ngModel)]="_movimientoSalida"
-                          name="movimientoSalida"
-                          id="customCheckRegister"
-                          type="checkbox"
-                        />
-                        <label
-                          class="custom-control-label"
-                          for="customCheckRegister"
-                        >
-                          <span>Movimiento Salida </span>
-                        </label>
-                      </div>
-                    </div>
+
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="select-proveedor"
+                      >Seleccione Proveedor</label
+                    >
+                    <select
+                      id="select-laboratorio"
+                      name="proveedor"
+                      class="form-control form-control-alternative"
+                      [(ngModel)]="selectProveedro"
+                      *ngFor="let _proveedor of datosProveedor"
+                    >
+                      <option value="{{ _proveedor.idProveedor }}">
+                        {{ _proveedor.nombres + " " + _proveedor.apellidos }}
+                      </option>
+                    </select>
                   </div>
                 </div>
               </div>
