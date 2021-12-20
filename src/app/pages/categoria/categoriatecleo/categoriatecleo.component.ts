@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Categoria } from 'src/app/model/categoria';
@@ -17,6 +17,7 @@ export class CategoriatecleoComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerDatos(this.rutaActiva.snapshot.params.Id);  
+    
   }
 
   grabar(){
@@ -47,4 +48,5 @@ export class CategoriatecleoComponent implements OnInit {
     
   }
 
+  
 }

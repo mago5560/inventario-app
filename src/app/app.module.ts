@@ -70,7 +70,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter : tokenGetter,
-        allowedDomains: ['localhost:8080'],
+        allowedDomains: ['localhost:8080'],        
       }
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
