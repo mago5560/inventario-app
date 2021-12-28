@@ -42,6 +42,8 @@ import { PorcentajedescuentoComponent } from './pages/porcentajedescuento/porcen
 import { PorcentajedescuentotecleoComponent } from './pages/porcentajedescuento/porcentajedescuentotecleo/porcentajedescuentotecleo.component';
 import { ProveedorlaboratorioComponent } from './pages/proveedorlaboratorio/proveedorlaboratorio.component';
 import { ProveedorlaboratoriotecleoComponent } from './pages/proveedorlaboratorio/proveedorlaboratoriotecleo/proveedorlaboratoriotecleo.component';
+import { ProductoComponent } from './pages/producto/producto.component';
+import { ProductotecleoComponent } from './pages/producto/productotecleo/productotecleo.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -101,7 +103,9 @@ export function tokenGetter() {
     PorcentajedescuentoComponent,
     PorcentajedescuentotecleoComponent,
     ProveedorlaboratorioComponent,
-    ProveedorlaboratoriotecleoComponent
+    ProveedorlaboratoriotecleoComponent,
+    ProductoComponent,
+    ProductotecleoComponent
     //cuando se controle todo
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

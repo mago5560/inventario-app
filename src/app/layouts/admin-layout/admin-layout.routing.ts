@@ -26,8 +26,11 @@ import { PorcentajedescuentoComponent } from 'src/app/pages/porcentajedescuento/
 import { PorcentajedescuentotecleoComponent } from 'src/app/pages/porcentajedescuento/porcentajedescuentotecleo/porcentajedescuentotecleo.component';
 import { ProveedorlaboratorioComponent } from 'src/app/pages/proveedorlaboratorio/proveedorlaboratorio.component';
 import { ProveedorlaboratoriotecleoComponent } from 'src/app/pages/proveedorlaboratorio/proveedorlaboratoriotecleo/proveedorlaboratoriotecleo.component';
+import { ProductoComponent } from 'src/app/pages/producto/producto.component';
+import { ProductotecleoComponent } from 'src/app/pages/producto/productotecleo/productotecleo.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: 'producto',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProductoComponent},{path:'tecleo/:Id',component:ProductotecleoComponent}]},
     { path: 'cliente',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ClienteComponent},{path:'tecleo/:Id',component:ClientetecleoComponent}]},
     { path: 'proveedor',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProveedorComponent},{path:'tecleo/:Id',component:ProveedortecleoComponent}]},
     { path: 'laboratorio',      canActivate: [AuthorizationGuard],   children:[{path:'', component:LaboratorioComponent},{path:'tecleo/:Id',component:LaboratoriotecleoComponent}]},

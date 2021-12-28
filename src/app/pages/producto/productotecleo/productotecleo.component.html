@@ -1,0 +1,366 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body"></div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="center col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Producto Tecleo</h3>
+            </div>
+            <div class="col-4 text-right">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="cerrar()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-2">
+              <div class="row">
+                <div class="col-xl-5 mb-5 mb-xl-0">
+                  <div class="row align-items-center">
+                    <div class="file-upload">
+                      <button
+                        class="file-upload-btn"
+                        *ngIf="!saveImage"
+                        type="button"
+                        onclick="$('.file-upload-input').trigger( 'click' )"
+                      >
+                        Agregar Imagen
+                      </button>
+
+                      <div *ngIf="!saveImage" class="image-upload-wrap">
+                        <input
+                          class="file-upload-input"
+                          type="file"
+                          (change)="onFileSelected($event)"
+                          accept="image/*"
+                        />
+                        <div class="drag-text">
+                          <h3>
+                            Arrastra y suelta un archivo o selecciona agregar
+                            imagen
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div
+                        *ngIf="saveImage"
+                        class="row align-items-center"
+                        id="file_content"
+                      >
+                        <img class="file-upload-image" [src]="url" />
+                        <div class="col-12 text-center">
+                          <button
+                            type="button"
+                            (click)="removeUpload()"
+                            class="remove-image"
+                          >
+                            Eliminar
+                            <span class="image-title">{{ nameImage }}</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row align-items-right">
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                          <div
+                            class="
+                              custom-control
+                              custom-control-alternative
+                              custom-checkbox
+                            "
+                          >
+                            <input
+                              class="custom-control-input"
+                              [(ngModel)]="cls.perecedero"
+                              name="perecedero"
+                              id="customCheckPerecedero"
+                              type="checkbox"
+                            />
+                            <label
+                              class="custom-control-label"
+                              for="customCheckPerecedero"
+                            >
+                              <span>Perecedero</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group">
+                          <div
+                            class="
+                              custom-control
+                              custom-control-alternative
+                              custom-checkbox
+                            "
+                          >
+                            <input
+                              class="custom-control-input"
+                              [(ngModel)]="cls.activo"
+                              name="activo"
+                              id="customCheckActivo"
+                              type="checkbox"
+                            />
+                            <label
+                              class="custom-control-label"
+                              for="customCheckActivo"
+                            >
+                              <span>Activo</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-7">
+                  <div class="row">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-nombre"
+                          >Nombre</label
+                        >
+                        <input
+                          type="text"
+                          id="input-nombre"
+                          [(ngModel)]="cls.nombre"
+                          name="nombre"
+                          class="form-control form-control-alternative"
+                          placeholder="Ingrese el nombre"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="select-unidadmedida"
+                          >Seleccione U.M.</label
+                        >
+                        <select
+                          id="select-unidadmedida"
+                          name="unidadmedida"
+                          class="form-control form-control-alternative"
+                          [(ngModel)]="selectIdUnidadMedida"
+                          placeholder="Unidad Medida"
+                        >
+                          <option
+                            *ngFor="let _um of datosUnidadMedida"
+                            value="{{ _um.idUnidadMedida }}"
+                          >
+                            {{ _um.abreviatura }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-descripcion"
+                          >Descripcion</label
+                        >
+                        <input
+                          type="text"
+                          id="input-descripcion"
+                          [(ngModel)]="cls.descripcion"
+                          name="descripcion"
+                          class="form-control form-control-alternative"
+                          placeholder="Ingrese la Descripcion"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-costo"
+                          >Costo</label
+                        >
+                        <input
+                          type="number"
+                          id="input-costo"
+                          [(ngModel)]="cls.costo"
+                          name="costo"
+                          class="form-control form-control-alternative"
+                          placeholder="Costo"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="select-porcentajedescuento"
+                          >Porcentaje Descuento</label
+                        >
+                        <select
+                          id="select-porcentajedescuento"
+                          name="porcentajedescuento"
+                          [(ngModel)]="selectIdPorcentajeDescuento"
+                          class="form-control form-control-alternative"
+                          placeholder="Descuento"
+                        >
+                          <option
+                            *ngFor="
+                              let _porcentajeDescuento of datosPorcentajeDescuento
+                            "
+                            value="{{
+                              _porcentajeDescuento.idPorcentajeDescuento
+                            }}"
+                          >
+                            {{ _porcentajeDescuento.descripcion }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="select-presentacion"
+                          >Precentacion</label
+                        >
+                        <select
+                          id="select-presentacion"
+                          name="presentacion"
+                          [(ngModel)]="selectIdPresentacion"
+                          class="form-control form-control-alternative"
+                          placeholder="Presentacion"
+                        >
+                          <option
+                            *ngFor="let _presentacion of datosPresentacion"
+                            value="{{ _presentacion.id }}"
+                          >
+                            {{ _presentacion.descripcion }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="select-categoria"
+                          >Seleccione Categoria</label
+                        >
+                        <select
+                          id="select-categoria"
+                          name="categoria"
+                          [(ngModel)]="selectIdCategoria"
+                          class="form-control form-control-alternative"
+                          placeholder="Categoria"
+                        >
+                          <option
+                            *ngFor="let _categoria of datosCategoria"
+                            value="{{ _categoria.idCategoria }}"
+                          >
+                            {{ _categoria.descripcion }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="select-marca"
+                          >Seleccione Marca</label
+                        >
+                        <select
+                          id="select-marca"
+                          name="marca"
+                          class="form-control form-control-alternative"
+                          [(ngModel)]="selectIdMarca"
+                          placeholder="Marca"
+                        >
+                          <option
+                            *ngFor="let _marca of datosMarca"
+                            value="{{ _marca.idMarca }}"
+                          >
+                            {{ _marca.descripcion }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col-12 text-right">
+                  <a class="btn btn-lg btn-danger" (click)="cerrar()"
+                    >Cancelar</a
+                  >
+                  <a class="btn btn-lg btn-primary" (click)="grabar()"
+                    >Grabar</a
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script typ="text/javascript">
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $(".image-upload-wrap").hide();
+
+        $(".file-upload-image").attr("src", e.target.result);
+        $(".file-upload-content").show();
+
+        $(".image-title").html(input.files[0].name);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      removeUpload();
+    }
+  }
+
+  function removeUpload() {
+    $(".file-upload-input").replaceWith($(".file-upload-input").clone());
+    $(".file-upload-content").hide();
+    $(".image-upload-wrap").show();
+  }
+  $(".image-upload-wrap").bind("dragover", function () {
+    $(".image-upload-wrap").addClass("image-dropping");
+  });
+  $(".image-upload-wrap").bind("dragleave", function () {
+    $(".image-upload-wrap").removeClass("image-dropping");
+  });
+</script>

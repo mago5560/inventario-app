@@ -38,9 +38,11 @@
                       name="laboratorio"
                       [(ngModel)]="selectLaboratorio"
                       class="form-control form-control-alternative"
-                      *ngFor="let _laboratorio of datosLaboratorio"
                     >
-                      <option value="{{ _laboratorio.idLaboratorio }}">
+                      <option
+                        *ngFor="let _laboratorio of datosLaboratorio"
+                        value="{{ _laboratorio.idLaboratorio }}"
+                      >
                         {{ _laboratorio.nombre }}
                       </option>
                     </select>
@@ -59,9 +61,11 @@
                       name="proveedor"
                       class="form-control form-control-alternative"
                       [(ngModel)]="selectProveedro"
-                      *ngFor="let _proveedor of datosProveedor"
                     >
-                      <option value="{{ _proveedor.idProveedor }}">
+                      <option
+                        *ngFor="let _proveedor of datosProveedor"
+                        value="{{ _proveedor.idProveedor }}"
+                      >
                         {{ _proveedor.nombres + " " + _proveedor.apellidos }}
                       </option>
                     </select>

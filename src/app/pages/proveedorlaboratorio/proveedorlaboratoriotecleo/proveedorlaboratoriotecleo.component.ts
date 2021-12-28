@@ -45,12 +45,10 @@ export class ProveedorlaboratoriotecleoComponent implements OnInit {
       this.toastr.error("El campo proveedor es requerido","Mensaje del sistema");
       return 
     }
+
+    this.cls.laboratorio = this.datosLaboratorio.find(c => c.idLaboratorio == this.selectLaboratorio);
+    this.cls.proveedor = this.datosProveedor.find(c => c.idProveedor == this.selectProveedro);
     
-    this.serviceLaboratorio.listarPorId(this.selectLaboratorio).subscribe(data => {
-      this.cls.laboratorio = data;
-      this.serviceProveedor.listarPorId(this.selectProveedro).subscribe(data => {
-        this.cls.proveedor = data;
-  
         if(this.cls.idProveedorLaboratorio > 0){
           this.service.modificar(this.cls).subscribe(data=>{
             this.toastr.success("Registro creado correctamente", "Mensaje del Sistema");
@@ -62,12 +60,6 @@ export class ProveedorlaboratoriotecleoComponent implements OnInit {
             this.cerrar();
           })
         }
-
-      })
-    })
-
-  
-  
   }
 
   cerrar(){

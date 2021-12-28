@@ -2,21 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ProveedorLaboratorio } from 'src/app/model/proveedorlaboratorio';
-import { ProveedorLaboratorioService } from 'src/app/service/proveedorlaboratorio.service';
+import { Producto } from 'src/app/model/producto';
+import { ProductoService } from 'src/app/service/producto.service';
 
 @Component({
-  selector: 'app-proveedorlaboratorio',
-  templateUrl: './proveedorlaboratorio.component.html',
-  styleUrls: ['./proveedorlaboratorio.component.scss']
+  selector: 'app-producto',
+  templateUrl: './producto.component.html',
+  styleUrls: ['./producto.component.scss']
 })
-export class ProveedorlaboratorioComponent implements OnInit {
+export class ProductoComponent implements OnInit {
 
-
-  public _datos:ProveedorLaboratorio[]=[];
+ 
+  public _datos:Producto[]=[];
   public _descripcion:string="";
 
-  constructor(private service:ProveedorLaboratorioService,private router: Router,public rutaActiva: ActivatedRoute,private toastr: ToastrService,private modalService: NgbModal) { }
+  constructor(private service:ProductoService,private router: Router,public rutaActiva: ActivatedRoute,private toastr: ToastrService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.buscar();
@@ -27,15 +27,15 @@ export class ProveedorlaboratorioComponent implements OnInit {
     this.router.navigate(['./tecleo',0], { relativeTo: this.rutaActiva });
   }
 
-  modificar(data:ProveedorLaboratorio){
-    this.router.navigate(['./tecleo',data.idProveedorLaboratorio], { relativeTo: this.rutaActiva });
+  modificar(data:Producto){
+    this.router.navigate(['./tecleo',data.idProducto], { relativeTo: this.rutaActiva });
   }
 
   
-  openDialog(modalEliminar,data:ProveedorLaboratorio) {
+  openDialog(modalEliminar,data:Producto) {
     this.modalService.open(modalEliminar, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       //Aceptar
-      this.service.eliminar(data.idProveedorLaboratorio).subscribe(data => {       
+      this.service.eliminar(data.idProducto).subscribe(data => {       
         this.toastr.success("Registro eliminado correctamente", "Mensaje del Sistema");
         this.buscar();
       }) 
@@ -61,6 +61,7 @@ export class ProveedorlaboratorioComponent implements OnInit {
     }else{
       this.service.listar().subscribe(data =>{
         this._datos=data;
+        console.log(this._datos)
         if(this._datos.length == 0){
           this.toastr.info("No se encontraro registos", "Mensaje del Sistema");
         }
