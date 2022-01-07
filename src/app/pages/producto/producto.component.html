@@ -43,10 +43,69 @@
 
 <div class="container-fluid mt--7">
   <div class="row mt-5">
+    <div class="card-deck justify-content-center">
+      <div class="pl-lg-2" *ngFor="let element of _datos">
+        <div class="card shadow mt-1" style="width: 18rem">
+          <img
+            class="file-upload-image d-flex justify-content-center"
+            src="{{ element.rutaImagen }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ element.nombre }}</h5>
+            <p class="card-text">{{ element.descripcion }}</p>
+            <p class="card-text">{{ element.costo | currency: "Q" }}</p>
+            <a class="btn btn-primary" (click)="modificar(element)"
+              >Modificar</a
+            >
+            <a
+              class="btn btn-danger"
+              (click)="openDialog(modalEliminar, element)"
+              >Eliminar</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="card-columns">
+      <div class="col-xs-8 col-md-6 col-lg-4" *ngFor="let element of _datos">
+        <div class="card shadow" style="width: 18rem">
+          <img
+            class="file-upload-image d-flex justify-content-center"
+            src="{{ element.rutaImagen }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ element.nombre }}</h5>
+            <p class="card-text">{{ element.descripcion }}</p>
+            <p class="card-text">{{ element.costo | currency: "Q" }}</p>
+            <a class="btn btn-primary" (click)="modificar(element)"
+              >Modificar</a
+            >
+            <a
+              class="btn btn-danger"
+              (click)="openDialog(modalEliminar, element)"
+              >Eliminar</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<!--
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
     <div class="col-lg-auto col-md-12">
       <div class="row grid">
         <div
-          class="col-xs-12 col-md-6 col-lg-4 mt-2"
+          class="col-xs-10 col-md-6 col-lg-4 mt-2"
           *ngFor="let element of _datos"
         >
           <div class="card shadow" style="width: 18rem">
@@ -74,6 +133,7 @@
     </div>
   </div>
 </div>
+-->
 <!--
 <div class="container-fluid mt--7">
   <div class="row mt-5">
