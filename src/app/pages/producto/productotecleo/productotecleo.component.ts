@@ -156,7 +156,11 @@ export class ProductotecleoComponent implements OnInit {
   obtenerDatos(id:number){
     if(id>0){
       this.service.listarPorId(id).subscribe(data =>{
-        this.cls=data;   
+        this.cls=data;
+        if(this.cls.rutaImagen != ""){
+          this.url = this.cls.rutaImagen.replace("/opt/tomcat/apache-tomcat-9.0.46/webapps/taquisieras/ROOT/img/", "http://taquisieras.502sdhs.com/img/")  
+          this.saveImage= true; 
+        }
         this.selectIdCategoria = this.cls.categoria.idCategoria
         this.selectIdMarca = this.cls.marca.idMarca    
         this.selectIdUnidadMedida = this.cls.unidadMedida.idUnidadMedida
@@ -175,7 +179,7 @@ export class ProductotecleoComponent implements OnInit {
       reader.readAsDataURL(this.selectedFile)
       reader.onload=(event:any)=>{
         this.url = event.target.result
-        this.nameImage = this.selectedFile.name
+        //this.nameImage = this.selectedFile.name
         this.saveImage = true;
       }
     }
