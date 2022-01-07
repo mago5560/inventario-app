@@ -1,0 +1,143 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body"></div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="center col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Producto Sucursal Tecleo</h3>
+            </div>
+            <div class="col-4 text-right">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="cerrar()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-2">
+              <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="select-producto"
+                      >Seleccione Producto</label
+                    >
+                    <select
+                      id="select-producto"
+                      name="producto"
+                      [(ngModel)]="selectIdProducto"
+                      class="form-control form-control-alternative"
+                    >
+                      <option
+                        *ngFor="let _producto of datosProducto"
+                        value="{{ _producto.idProducto }}"
+                      >
+                        {{ _producto.nombre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="select-sucursal"
+                      >Seleccione Sucursal</label
+                    >
+                    <select
+                      id="select-sucursal"
+                      name="sucursal"
+                      [(ngModel)]="selectIdSucursal"
+                      class="form-control form-control-alternative"
+                    >
+                      <option
+                        *ngFor="let _sucursal of datosSucursal"
+                        value="{{ _sucursal.idSucursal }}"
+                      >
+                        {{ _sucursal.nombre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-fecha"
+                      >Fecha</label
+                    >
+                    <input
+                      type="date"
+                      id="input-fecha"
+                      [(ngModel)]="cls.fechaSaldo"
+                      name="fecha"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Fecha"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-saldo"
+                      >Saldo</label
+                    >
+                    <input
+                      type="number"
+                      id="input-saldo"
+                      [(ngModel)]="cls.saldo"
+                      name="saldo"
+                      class="form-control form-control-alternative"
+                      placeholder="Saldo"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-valorPromedio"
+                      >Valor Promedio</label
+                    >
+                    <input
+                      type="number"
+                      id="input-valorPromedio"
+                      [(ngModel)]="cls.valorPromedio"
+                      name="valorPromedio"
+                      class="form-control form-control-alternative"
+                      placeholder="Valor Promedio"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col-12 text-right">
+                  <a class="btn btn-lg btn-danger" (click)="cerrar()"
+                    >Cancelar</a
+                  >
+                  <a class="btn btn-lg btn-primary" (click)="grabar()"
+                    >Grabar</a
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

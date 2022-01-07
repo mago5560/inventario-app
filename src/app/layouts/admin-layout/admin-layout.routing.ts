@@ -28,8 +28,14 @@ import { ProveedorlaboratorioComponent } from 'src/app/pages/proveedorlaboratori
 import { ProveedorlaboratoriotecleoComponent } from 'src/app/pages/proveedorlaboratorio/proveedorlaboratoriotecleo/proveedorlaboratoriotecleo.component';
 import { ProductoComponent } from 'src/app/pages/producto/producto.component';
 import { ProductotecleoComponent } from 'src/app/pages/producto/productotecleo/productotecleo.component';
+import { SucursalComponent } from 'src/app/pages/sucursal/sucursal.component';
+import { SucursaltecleoComponent } from 'src/app/pages/sucursal/sucursaltecleo/sucursaltecleo.component';
+import { ProductosucursalComponent } from 'src/app/pages/productosucursal/productosucursal.component';
+import { ProductosucursaltecleoComponent } from 'src/app/pages/productosucursal/productosucursaltecleo/productosucursaltecleo.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: 'productosucursal',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProductosucursalComponent},{path:'tecleo/:Id',component:ProductosucursaltecleoComponent}]},
+    { path: 'sucursal',      canActivate: [AuthorizationGuard],   children:[{path:'', component:SucursalComponent},{path:'tecleo/:Id',component:SucursaltecleoComponent}]},
     { path: 'producto',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProductoComponent},{path:'tecleo/:Id',component:ProductotecleoComponent}]},
     { path: 'cliente',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ClienteComponent},{path:'tecleo/:Id',component:ClientetecleoComponent}]},
     { path: 'proveedor',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProveedorComponent},{path:'tecleo/:Id',component:ProveedortecleoComponent}]},
@@ -37,7 +43,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'porcentajedescuento',      canActivate: [AuthorizationGuard],   children:[{path:'', component:PorcentajedescuentoComponent},{path:'tecleo/:Id',component:PorcentajedescuentotecleoComponent}]},
     { path: 'proveedorlaboratorio',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProveedorlaboratorioComponent},{path:'tecleo/:Id',component:ProveedorlaboratoriotecleoComponent}]},
     { path: 'categoria',      canActivate: [AuthorizationGuard],   children:[{path:'', component:CategoriaComponent},{path:'tecleo/:Id',component:CategoriatecleoComponent}]},
-
     { path: 'empresa',      canActivate: [AuthorizationGuard],   children:[{path:'', component:EmpresaComponent},{path:'tecleo/:Id',component:EmpresatecleoComponent}]},
     { path: 'formapago',      canActivate: [AuthorizationGuard],   children:[{path:'', component:FormapagoComponent},{path:'tecleo/:Id',component:FormapagotecleoComponent}]},
     { path: 'marca',      canActivate: [AuthorizationGuard],   children:[{path:'', component:MarcaComponent},{path:'tecleo/:Id',component:MarcatecleoComponent}]},

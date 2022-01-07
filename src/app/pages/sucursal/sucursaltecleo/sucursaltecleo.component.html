@@ -10,7 +10,7 @@
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">Porcentaje Descuento Tecleo</h3>
+              <h3 class="mb-0">Sucursal Tecleo</h3>
             </div>
             <div class="col-4 text-right">
               <button
@@ -30,18 +30,22 @@
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-fecha"
-                      >Fecha</label
+                    <label class="form-control-label" for="select-empresa"
+                      >Seleccione Empresa</label
                     >
-                    <input
-                      type="date"
-                      id="input-fecha"
-                      [(ngModel)]="cls.fecha"
-                      name="fecha"
+                    <select
+                      id="select-empresa"
+                      name="empresa"
+                      [(ngModel)]="selectIdEmpresa"
                       class="form-control form-control-alternative"
-                      placeholder="Ingrese Fecha"
-                      required
-                    />
+                    >
+                      <option
+                        *ngFor="let _empresa of datosEmpresa"
+                        value="{{ _empresa.idEmpresa }}"
+                      >
+                        {{ _empresa.nombre }}
+                      </option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -49,36 +53,34 @@
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-porcentaje"
-                      >Porcentaje</label
-                    >
-                    <input
-                      type="number"
-                      id="input-porcentaje"
-                      [(ngModel)]="cls.porcentaje"
-                      name="porcentaje"
-                      class="form-control form-control-alternative"
-                      placeholder="Ingrese Porcentaje"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-descripcion"
-                      >Descripcion</label
+                    <label class="form-control-label" for="input-nombre"
+                      >Nombre</label
                     >
                     <input
                       type="text"
-                      id="input-descripcion"
-                      name="descripcion"
-                      [(ngModel)]="cls.descripcion"
+                      id="input-nombre"
+                      name="nombre"
+                      [(ngModel)]="cls.nombre"
                       class="form-control form-control-alternative"
-                      placeholder="Ingrese descripcion"
-                      required
+                      placeholder="Ingrese Nombre"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-direccion"
+                      >Direccion</label
+                    >
+                    <input
+                      type="text"
+                      id="input-direccion"
+                      name="direccion"
+                      [(ngModel)]="cls.direccion"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese Direccion"
                     />
                   </div>
                 </div>

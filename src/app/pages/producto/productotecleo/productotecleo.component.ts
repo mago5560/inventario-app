@@ -68,13 +68,53 @@ export class ProductotecleoComponent implements OnInit {
       return 
     }
 
+    if(this.selectIdUnidadMedida == 0 ){
+      this.toastr.error("El campo Unidad es requerido","Mensaje del sistema");
+      return 
+    }
+
+    if(this.selectIdPresentacion == 0 ){
+      this.toastr.error("El campo Precentacion es requerido","Mensaje del sistema");
+      return 
+    }
+
+    
     this.cls.categoria = this.datosCategoria.find(c => c.idCategoria == this.selectIdCategoria);
     this.cls.marca = this.datosMarca.find(c => c.idMarca == this.selectIdMarca);
     
     this.cls.unidadMedida =  this.datosUnidadMedida.find(c => c.idUnidadMedida == this.selectIdUnidadMedida);
     this.cls.porcentajeDescuento = this.datosPorcentajeDescuento.find(c => c.idPorcentajeDescuento == this.selectIdPorcentajeDescuento);
     this.cls.presentacion = this.datosPresentacion.find(c => c.id == this.selectIdPresentacion);
+    this.cls.file = this.selectedFile;
 
+    let formData = new FormData();
+    formData.append('file',this.cls.file);
+    formData.append('activo',String(this.cls.activo));
+    formData.append('categoria',String(this.selectIdCategoria));
+    formData.append('costo',String(this.cls.costo));
+    formData.append('descripcion',this.cls.descripcion);
+    formData.append('idProducto',String(this.cls.idProducto));
+    formData.append('marca',String(this.selectIdMarca));
+    formData.append('nombre',this.cls.nombre);
+    formData.append('perecedero',String(this.cls.perecedero));
+    formData.append('porcentajeDescuento',String(this.selectIdPorcentajeDescuento));
+    formData.append('presentacion',String(this.selectIdPresentacion));
+    formData.append('rutaImagen', '' )
+    formData.append('unidadMedida',String(this.selectIdUnidadMedida));
+
+    if(this.cls.idProducto > 0){
+      this.service.modificarFormData(formData).subscribe(data=>{
+        this.toastr.success("Registro creado correctamente", "Mensaje del Sistema");
+        this.cerrar();
+      })
+    }else{
+      this.service.registrarFormData(formData).subscribe(data=>{
+        this.toastr.success("Registro modificado correctamente", "Mensaje del Sistema");
+        this.cerrar();
+      })
+    }
+
+    /*
         if(this.cls.idProducto > 0){
           this.service.modificar(this.cls).subscribe(data=>{
             this.toastr.success("Registro creado correctamente", "Mensaje del Sistema");
@@ -86,6 +126,7 @@ export class ProductotecleoComponent implements OnInit {
             this.cerrar();
           })
         }
+    */
   }
 
 
@@ -118,6 +159,9 @@ export class ProductotecleoComponent implements OnInit {
         this.cls=data;   
         this.selectIdCategoria = this.cls.categoria.idCategoria
         this.selectIdMarca = this.cls.marca.idMarca    
+        this.selectIdUnidadMedida = this.cls.unidadMedida.idUnidadMedida
+        this.selectIdPorcentajeDescuento = this.cls.porcentajeDescuento.idPorcentajeDescuento
+        this.selectIdPresentacion = this.cls.presentacion.id
       })
     }
     

@@ -51,8 +51,15 @@
         >
           <div class="card shadow" style="width: 18rem">
             <img
+              *ngIf="element.rutaImage"
               class="card-img-top"
-              src="http://taquisieras.502sdhs.com/img/menu-burger-img.jpg"
+              src="{{ element.rutaImage }}"
+              alt="Card image cap"
+            />
+            <img
+              *ngIf="!element.rutaImage"
+              class="card-img-top"
+              src="../assets/img/nocamara.png"
               alt="Card image cap"
             />
             <div class="card-body">

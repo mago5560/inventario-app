@@ -17,4 +17,5 @@ export class Producto{
     public presentacion:Presentacion = new Presentacion();
     public rutaImagen:string="";
     public unidadMedida:UnidadMedida = new UnidadMedida();
+    public file:File = null;
 }
