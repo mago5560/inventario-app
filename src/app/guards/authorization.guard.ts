@@ -11,6 +11,7 @@ import { StorageService } from "../service/storage.service";
   
 
       canActivate() {
+        //console.log(this.storageService.getCurrentSession());
       if(! this.storageService.isAuthenticated()){
          this.router.navigate(['/login']);
       return false;

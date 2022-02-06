@@ -1,0 +1,142 @@
+<div class="header bg-gradient-danger pb-6 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-descripcion"
+                      >Filtro</label
+                    >
+                    <input
+                      type="search"
+                      id="input-descripcion"
+                      [(ngModel)]="_descripcion"
+                      class="form-control form-control-alternative"
+                      placeholder="Ingrese texto a buscar"
+                    />
+                  </div>
+                </div>
+                <div class="col text-right">
+                  <button class="btn btn-primary" (click)="buscar()">
+                    <i class="bi bi-search"></i>Buscar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Total registros creados</h3>
+              <h6>{{ "Total: " + _datos.length }}</h6>
+            </div>
+            <div class="col text-right">
+              <a (click)="grabar()" class="btn btn-sm btn-primary"
+                >Agregar Nuevo</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Producto Descripcion</th>
+                <th scope="col">Descuento</th>
+                <th scope="col">Porcentaje</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let element of _datos">
+                <td>{{ element.idProductoDescuento }}</td>
+                <td scope="row">
+                  {{ element.producto.idProducto }}
+                </td>
+                <td scope="row">
+                  {{ element.producto.nombre }}
+                </td>
+                <td scope="row">
+                  {{ element.porcentajeDescuento.descripcion }}
+                </td>
+
+                <td scope="row">
+                  {{ element.porcentajeDescuento.porcentaje }}
+                </td>
+
+                <td>
+                  <button
+                    class="btn btn-sm btn-primary"
+                    (click)="modificar(element)"
+                  >
+                    <i class="fa fa-pen" aria-hidden="true"></i> Modificar
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger"
+                    (click)="openDialog(modalEliminar, element)"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalEliminar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Eliminar Registro</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('cancelar')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      ¿Esta seguro que desea eliminar el registro?. Ya no podra recuperarlo.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="modal.dismiss('cancelar')"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="modal.close('aceptar')"
+    >
+      Aceptar
+    </button>
+  </div>
+</ng-template>

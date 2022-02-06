@@ -13,6 +13,7 @@ import { PorcentajeDescuentoService } from 'src/app/service/porcentajedescuento.
 import { PresentacionService } from 'src/app/service/presentacion.service';
 import { ProductoService } from 'src/app/service/producto.service';
 import { UnidadMedidaService } from 'src/app/service/unidadmedida.service';
+import { URL_IMG_DESTINO, URL_IMG_ORIGEN } from 'src/app/shared/var.constants';
 
 @Component({
   selector: 'app-productotecleo',
@@ -40,6 +41,7 @@ export class ProductotecleoComponent implements OnInit {
   public url:string  = "";
   public nameImage:string="";
   public saveImage: boolean = false;
+  public changeImage:boolean = false;
 
 
   constructor(private service:ProductoService,
@@ -78,16 +80,18 @@ export class ProductotecleoComponent implements OnInit {
       return 
     }
 
-    
+    /*
     this.cls.categoria = this.datosCategoria.find(c => c.idCategoria == this.selectIdCategoria);
     this.cls.marca = this.datosMarca.find(c => c.idMarca == this.selectIdMarca);
-    
     this.cls.unidadMedida =  this.datosUnidadMedida.find(c => c.idUnidadMedida == this.selectIdUnidadMedida);
     this.cls.porcentajeDescuento = this.datosPorcentajeDescuento.find(c => c.idPorcentajeDescuento == this.selectIdPorcentajeDescuento);
     this.cls.presentacion = this.datosPresentacion.find(c => c.id == this.selectIdPresentacion);
+    */
+
     this.cls.file = this.selectedFile;
 
     let formData = new FormData();
+  
     formData.append('file',this.cls.file);
     formData.append('activo',String(this.cls.activo));
     formData.append('categoria',String(this.selectIdCategoria));
@@ -102,6 +106,25 @@ export class ProductotecleoComponent implements OnInit {
     formData.append('rutaImagen', '' )
     formData.append('unidadMedida',String(this.selectIdUnidadMedida));
 
+    if(!this.changeImage){
+    console.log("put")      
+      this.service.modificarFormData(formData).subscribe(data=>{
+        this.toastr.success("Registro grabado correctamente", "Mensaje del Sistema");
+        this.cerrar();
+      })
+    }else{
+      if(this.selectedFile != undefined){
+        console.log("post")      
+        this.service.registrarFormData(formData).subscribe(data=>{
+          this.toastr.success("Registro grabado correctamente", "Mensaje del Sistema");
+          this.cerrar();
+        })
+      }else{
+        this.toastr.error("Debe de seleccionar una imagen para este proceso" ,"Mensaje del Sistema");
+      }
+    }
+
+    /*
     if(this.cls.idProducto > 0){
       this.service.modificarFormData(formData).subscribe(data=>{
         this.toastr.success("Registro creado correctamente", "Mensaje del Sistema");
@@ -113,6 +136,7 @@ export class ProductotecleoComponent implements OnInit {
         this.cerrar();
       })
     }
+    */
 
     /*
         if(this.cls.idProducto > 0){
@@ -158,13 +182,17 @@ export class ProductotecleoComponent implements OnInit {
       this.service.listarPorId(id).subscribe(data =>{
         this.cls=data;
         if(this.cls.rutaImagen != ""){
-          this.url = this.cls.rutaImagen.replace("/opt/tomcat/apache-tomcat-9.0.46/webapps/taquisieras/ROOT/img/", "http://taquisieras.502sdhs.com/img/")  
+          this.url = this.cls.rutaImagen.replace(URL_IMG_ORIGEN, URL_IMG_DESTINO)  
           this.saveImage= true; 
+          this.changeImage=false;
         }
         this.selectIdCategoria = this.cls.categoria.idCategoria
         this.selectIdMarca = this.cls.marca.idMarca    
         this.selectIdUnidadMedida = this.cls.unidadMedida.idUnidadMedida
-        this.selectIdPorcentajeDescuento = this.cls.porcentajeDescuento.idPorcentajeDescuento
+        console.log(this.cls.porcentajeDescuento)
+        if(this.cls.porcentajeDescuento != null){
+          this.selectIdPorcentajeDescuento = this.cls.porcentajeDescuento.idPorcentajeDescuento
+        }
         this.selectIdPresentacion = this.cls.presentacion.id
       })
     }
@@ -181,6 +209,7 @@ export class ProductotecleoComponent implements OnInit {
         this.url = event.target.result
         //this.nameImage = this.selectedFile.name
         this.saveImage = true;
+        this.changeImage = true;
       }
     }
   }

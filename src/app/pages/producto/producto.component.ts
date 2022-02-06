@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Producto } from 'src/app/model/producto';
 import { ProductoService } from 'src/app/service/producto.service';
+import { URL_IMG_DESTINO, URL_IMG_ORIGEN } from 'src/app/shared/var.constants';
 
 @Component({
   selector: 'app-producto',
@@ -16,6 +17,8 @@ export class ProductoComponent implements OnInit {
  
   public _datos:Producto[]=[];
   public _descripcion:string="";
+
+  
 
   constructor(private service:ProductoService,private router: Router,public rutaActiva: ActivatedRoute,private toastr: ToastrService,private modalService: NgbModal) { }
 
@@ -53,7 +56,7 @@ export class ProductoComponent implements OnInit {
     if(this._descripcion != ""){
       this.service.listarDescripcion(this._descripcion).subscribe(data =>{
         this._datos =  data.map(function(elem){
-          elem.rutaImagen = elem.rutaImagen ? elem.rutaImagen.replace("/opt/tomcat/apache-tomcat-9.0.46/webapps/taquisieras/ROOT/img/", "http://taquisieras.502sdhs.com/img/") : "../assets/img/nocamara.png";
+          elem.rutaImagen = elem.rutaImagen ? elem.rutaImagen.replace(URL_IMG_ORIGEN, URL_IMG_DESTINO) : "../assets/img/nocamara.png";
           return elem;
         })
         if(this._datos.length == 0){
@@ -64,13 +67,13 @@ export class ProductoComponent implements OnInit {
       })
     }else{
       this.service.listar().subscribe(data =>{
-        console.log(data)
+        //console.log(data)
         this._datos =  data.map(function(elem){
-          elem.rutaImagen = elem.rutaImagen ? elem.rutaImagen.replace("/opt/tomcat/apache-tomcat-9.0.46/webapps/taquisieras/ROOT/img/", "http://taquisieras.502sdhs.com/img/") : "../assets/img/nocamara.png";
+          elem.rutaImagen = elem.rutaImagen ? elem.rutaImagen.replace(URL_IMG_ORIGEN, URL_IMG_DESTINO) : "../assets/img/nocamara.png";
           return elem;
         })
         //this._datos=data;
-        console.log(this._datos)
+        //console.log(this._datos)
         if(this._datos.length == 0){
           this.toastr.info("No se encontraro registos", "Mensaje del Sistema");
         }
