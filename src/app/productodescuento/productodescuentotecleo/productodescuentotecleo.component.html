@@ -1,1 +1,96 @@
-<p>productodescuentotecleo works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body"></div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="center col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Producto Descuento Tecleo</h3>
+            </div>
+            <div class="col-4 text-right">
+              <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="cerrar()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-2">
+              <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="select-producto"
+                      >Seleccione Producto</label
+                    >
+                    <select
+                      id="select-producto"
+                      name="producto"
+                      [(ngModel)]="selectIdProducto"
+                      class="form-control form-control-alternative"
+                    >
+                      <option
+                        *ngFor="let _producto of datosProducto"
+                        value="{{ _producto.idProducto }}"
+                      >
+                        {{ _producto.nombre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="form-group">
+                    <label
+                      class="form-control-label"
+                      for="select-porcentajeDescuento"
+                      >Seleccione Porcentaje Descuento</label
+                    >
+                    <select
+                      id="select-porcentajeDescuento"
+                      name="porcentajeDescuento"
+                      [(ngModel)]="selectIdPorcentajeDescuento"
+                      class="form-control form-control-alternative"
+                    >
+                      <option
+                        *ngFor="
+                          let _porcentajeDescuento of datosPorcentajeDescuento
+                        "
+                        value="{{ _porcentajeDescuento.idPorcentajeDescuento }}"
+                      >
+                        {{ _porcentajeDescuento.descripcion }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col-12 text-right">
+                  <a class="btn btn-lg btn-danger" (click)="cerrar()"
+                    >Cancelar</a
+                  >
+                  <a class="btn btn-lg btn-primary" (click)="grabar()"
+                    >Grabar</a
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

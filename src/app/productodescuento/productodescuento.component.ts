@@ -61,7 +61,6 @@ export class ProductodescuentoComponent implements OnInit {
     }else{
       this.service.listar().subscribe(data =>{
         this._datos=data;
-        console.log(this._datos)
         if(this._datos.length == 0){
           this.toastr.info("No se encontraro registos", "Mensaje del Sistema");
         }
