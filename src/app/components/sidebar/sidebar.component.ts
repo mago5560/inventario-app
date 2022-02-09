@@ -24,7 +24,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/empresa', title: 'Empresa',  icon:'ni-bold-right text-primary', class: '' },
     { path: '/formapago', title: 'Forma de Pago',  icon:'ni-bold-right text-primary', class: '' },
     { path: '/marca', title: 'Marca',  icon:'ni-bold-right text-primary', class: '' },
-    { path: '/presentacion', title: 'Presentacion',  icon:'ni-bold-right text-primary', class: '' },
+    { path: '/presentacion', title: 'Presentación',  icon:'ni-bold-right text-primary', class: '' },
     { path: '/tipomovimiento', title: 'Tipo de Movimiento',  icon:'ni-bold-right text-primary', class: '' },
     { path: '/unidadmedida', title: 'Unidad de Medida',  icon:'ni-bold-right text-primary', class: '' },
     { path: '/categoria', title: 'Categoria',  icon:'ni-bold-right text-primary', class: '' }
