@@ -67,7 +67,7 @@ export class ProductoComponent implements OnInit {
       })
     }else{
       this.service.listar().subscribe(data =>{
-        //console.log(data)
+        console.log(data)
         this._datos =  data.map(function(elem){
           elem.rutaImagen = elem.rutaImagen ? elem.rutaImagen.replace(URL_IMG_ORIGEN, URL_IMG_DESTINO) : "../assets/img/nocamara.png";
           return elem;

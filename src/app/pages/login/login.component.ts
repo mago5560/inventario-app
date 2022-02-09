@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     let user: Session = 
      {
-      "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiYmRzc2VjdXJlaWQiXSwidXNlcl9uYW1lIjoibG1lbmRvemEiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNjQ0NDI1MTcwLCJhdXRob3JpdGllcyI6WyJBRE1JTiJdLCJqdGkiOiJmMzIxNTQyNy02MjVjLTQzZGEtYmQwNC0wNmJkNTk0Zjk4ZmQiLCJjbGllbnRfaWQiOiJiZHNyZXN0YXVyYW50YXBwIn0._KS2xTyT2hsgDHCujohZQWgMcWPvnVhCsvHh6WPO_X4",
+      "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiYmRzc2VjdXJlaWQiXSwidXNlcl9uYW1lIjoiZGVtbyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE5NDQ0MjUyNzAsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6ImYzMjE1NDI3LTYyNWMtNDNkYS1iZDA0LTA2YmQ1OTRmOThmZCIsImNsaWVudF9pZCI6ImJkc3Jlc3RhdXJhbnRhcHAifQ.alvIRWZC87piP1RxDrNe21NFDVjmidekgiceblfxdj8",
       "token_type": "bearer",
       "expires_in": 499999,
       "scope": "read write",

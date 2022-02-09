@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ProductoDescuento } from '../model/productodescuento';
-import { ProductoDescuentoService } from '../service/productodescuento.service';
+import { ProductoDescuento } from '../../model/productodescuento';
+import { ProductoDescuentoService } from '../../service/productodescuento.service';
 
 @Component({
   selector: 'app-productodescuento',

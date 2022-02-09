@@ -91,8 +91,7 @@ export class ProductotecleoComponent implements OnInit {
     this.cls.file = this.selectedFile;
 
     let formData = new FormData();
-  
-    formData.append('file',this.cls.file);
+ 
     formData.append('activo',String(this.cls.activo));
     formData.append('categoria',String(this.selectIdCategoria));
     formData.append('costo',String(this.cls.costo));
@@ -107,12 +106,13 @@ export class ProductotecleoComponent implements OnInit {
     formData.append('unidadMedida',String(this.selectIdUnidadMedida));
 
     if(!this.changeImage){
-    console.log("put")      
+    console.log("put")  
       this.service.modificarFormData(formData).subscribe(data=>{
         this.toastr.success("Registro grabado correctamente", "Mensaje del Sistema");
         this.cerrar();
       })
     }else{
+    formData.append('file',this.cls.file);
       if(this.selectedFile != undefined){
         console.log("post")      
         this.service.registrarFormData(formData).subscribe(data=>{

@@ -32,8 +32,8 @@ import { SucursalComponent } from 'src/app/pages/sucursal/sucursal.component';
 import { SucursaltecleoComponent } from 'src/app/pages/sucursal/sucursaltecleo/sucursaltecleo.component';
 import { ProductosucursalComponent } from 'src/app/pages/productosucursal/productosucursal.component';
 import { ProductosucursaltecleoComponent } from 'src/app/pages/productosucursal/productosucursaltecleo/productosucursaltecleo.component';
-import { ProductodescuentotecleoComponent } from 'src/app/productodescuento/productodescuentotecleo/productodescuentotecleo.component';
-import { ProductodescuentoComponent } from 'src/app/productodescuento/productodescuento.component';
+import { ProductodescuentotecleoComponent } from 'src/app/pages/productodescuento/productodescuentotecleo/productodescuentotecleo.component';
+import { ProductodescuentoComponent } from 'src/app/pages/productodescuento/productodescuento.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'productodescuento',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProductodescuentoComponent},{path:'tecleo/:Id',component:ProductodescuentotecleoComponent}]},
