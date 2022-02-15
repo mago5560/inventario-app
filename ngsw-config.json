@@ -26,5 +26,19 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls": ["https://www.502sdhs.com/inventario-app/**"],
+      "cacheConfig": {
+        "maxSize": 3,
+        "maxAge": "1d",
+        "strategy": "freshness",
+        "timeout": "2s"
+      }
+    }
+    
+
   ]
 }
