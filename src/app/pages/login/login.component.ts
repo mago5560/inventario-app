@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(){
 
+    /*
     let user: Session = 
      {
       "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiYmRzc2VjdXJlaWQiXSwidXNlcl9uYW1lIjoiZGVtbyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE5NDQ0MjUyNzAsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6ImYzMjE1NDI3LTYyNWMtNDNkYS1iZDA0LTA2YmQ1OTRmOThmZCIsImNsaWVudF9pZCI6ImJkc3Jlc3RhdXJhbnRhcHAifQ.alvIRWZC87piP1RxDrNe21NFDVjmidekgiceblfxdj8",
@@ -34,13 +35,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.storageService.setCurrentSession(user);
     this.router.navigate(['/dashboard']);
+    */
 
-/*
+
     this.api.login(this.usuario,this.password).subscribe(data =>{
       this.storageService.setCurrentSession(data);
       this.router.navigate(['/dashboard']);
     })
-    */
+    
   }
 
 }
