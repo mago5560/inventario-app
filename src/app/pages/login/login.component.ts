@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Session } from 'src/app/model/session';
 import { LoginService } from 'src/app/service/login.service';
 import { StorageService } from 'src/app/service/storage.service';
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public usuario:string="";
   public password:string="";
 
-  constructor( private storageService: StorageService,private api: LoginService,private router: Router) {}
+  constructor( private storageService: StorageService,private api: LoginService,private router: Router,private toastr: ToastrService) {}
 
   ngOnInit() {
   }
@@ -41,6 +42,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.api.login(this.usuario,this.password).subscribe(data =>{
       this.storageService.setCurrentSession(data);
       this.router.navigate(['/dashboard']);
+    },error =>{
+      this.toastr.error(error,"Mensaje del Sistema");
     })
     
   }

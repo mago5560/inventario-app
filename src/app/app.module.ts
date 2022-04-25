@@ -50,6 +50,8 @@ import { ProductosucursalComponent } from './pages/productosucursal/productosucu
 import { ProductosucursaltecleoComponent } from './pages/productosucursal/productosucursaltecleo/productosucursaltecleo.component';
 import { ProductodescuentoComponent } from './pages/productodescuento/productodescuento.component';
 import { ProductodescuentotecleoComponent } from './pages/productodescuento/productodescuentotecleo/productodescuentotecleo.component';
+import { EntradaComponent } from './pages/entrada/entrada.component';
+import { EntradatecleoComponent } from './pages/entrada/entradatecleo/entradatecleo.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -117,7 +119,9 @@ export function tokenGetter() {
     ProductosucursalComponent,
     ProductosucursaltecleoComponent,
     ProductodescuentoComponent,
-    ProductodescuentotecleoComponent
+    ProductodescuentotecleoComponent,
+    EntradaComponent,
+    EntradatecleoComponent
     //cuando se controle todo
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

@@ -36,6 +36,14 @@
         </div>
       </li>
       -->
+      <button
+      type="button"
+      class="btn btn-primary"
+      (click)="installByUser()" *ngIf="installEvent == null" >
+      <i class="bi bi-display-fill"></i>
+      <span > Install App</span>
+    </button>
+
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
@@ -144,6 +152,7 @@
       </form>
       -->
       <!-- Navigation -->
+      
       <ul class="navbar-nav">
         <li
           *ngFor="let menuItem of menuItems"
@@ -154,7 +163,7 @@
             [routerLink]="[menuItem.path]"
             class="nav-link"
           >
-            <i class="ni {{ menuItem.icon }}"></i>
+            <i class="{{ menuItem.icon }}"></i>
             {{ menuItem.title }}
           </a>
         </li>

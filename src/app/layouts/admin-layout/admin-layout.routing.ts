@@ -34,8 +34,11 @@ import { ProductosucursalComponent } from 'src/app/pages/productosucursal/produc
 import { ProductosucursaltecleoComponent } from 'src/app/pages/productosucursal/productosucursaltecleo/productosucursaltecleo.component';
 import { ProductodescuentotecleoComponent } from 'src/app/pages/productodescuento/productodescuentotecleo/productodescuentotecleo.component';
 import { ProductodescuentoComponent } from 'src/app/pages/productodescuento/productodescuento.component';
+import { EntradatecleoComponent } from 'src/app/pages/entrada/entradatecleo/entradatecleo.component';
+import { EntradaComponent } from 'src/app/pages/entrada/entrada.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: 'entrada',      canActivate: [AuthorizationGuard],   children:[{path:'', component:EntradaComponent},{path:'tecleo/:Id',component:EntradatecleoComponent}]},
     { path: 'productodescuento',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProductodescuentoComponent},{path:'tecleo/:Id',component:ProductodescuentotecleoComponent}]},
     { path: 'productosucursal',      canActivate: [AuthorizationGuard],   children:[{path:'', component:ProductosucursalComponent},{path:'tecleo/:Id',component:ProductosucursaltecleoComponent}]},
     { path: 'sucursal',      canActivate: [AuthorizationGuard],   children:[{path:'', component:SucursalComponent},{path:'tecleo/:Id',component:SucursaltecleoComponent}]},
