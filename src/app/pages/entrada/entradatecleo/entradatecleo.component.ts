@@ -126,6 +126,7 @@ export class EntradatecleoComponent implements OnInit {
       this.clsDetalle.producto = data;
       //console.log(this.clsDetalle)
       this.clsDetalle.subTotal = this.clsDetalle.cantidad * this.clsDetalle.valor
+      this.clsDetalle.fechaVencimiento = this.datePipe.transform(this.clsDetalle.fechaVencimiento,"yyyy-MM-dd'T'HH:mm")
       this._datos.push(this.clsDetalle)
       this.toastr.success("Registro Grabado", "Mensaje del Sistema"); 
       this.calcularTotal(this._datos)
@@ -148,6 +149,7 @@ export class EntradatecleoComponent implements OnInit {
       this.cls.proveedorLaboratorio = selectProveedorLaboratorio;
 
       this.cls.entradaDetalle = this._datos
+      this.cls.fecha =  this.datePipe.transform(this.cls.fecha,"yyyy-MM-dd'T'HH:mm")
       console.log(this.cls)
       this.service.registrar(this.cls).subscribe(data => {       
         this.toastr.success("Registro eliminado correctamente", "Mensaje del Sistema");
