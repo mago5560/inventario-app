@@ -26,7 +26,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/formapago', title: 'Forma de Pago',  icon:'bi bi-currency-exchange text-primary', class: '' },
     { path: '/marca', title: 'Marca',  icon:'bi bi-bookmark-check-fill text-primary', class: '' },
     { path: '/presentacion', title: 'Presentación',  icon:'bi bi-file-earmark-richtext-fill text-primary', class: '' },
-    { path: '/tipomovimiento', title: 'Tipo de Movimiento',  icon:'bi bi-filetype-mov text-primary', class: '' },
+    { path: '/tipomovimiento', title: 'Tipo de Movimiento',  icon:'bi bi-file-earmark-richtext-fill text-primary', class: '' },
     { path: '/unidadmedida', title: 'Unidad de Medida',  icon:'bi bi-rulers text-primary', class: '' },
     { path: '/categoria', title: 'Categoria',  icon:'bi bi-diagram-3-fill text-primary', class: '' }
 ];
