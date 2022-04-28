@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  public installEvent:any = null
+  public installEvent = null
 
 
   constructor(location: Location,  
@@ -27,11 +27,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    console.log("variable null " + this.installEvent)
   }
 
   @HostListener('window:beforeinstallprompt',['$event'])
-  onBeforeInstallPrompt(event:Event){
+  onbeforeinstallprompt(event:Event){
     console.log('before install prompt')
     console.log(event)
     event.preventDefault()
