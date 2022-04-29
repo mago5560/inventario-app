@@ -43,8 +43,9 @@
 
 <div class="container-fluid mt--7">
   <div class="row mt-5">
-    <div class="card-deck justify-content-center">
+    <div class="card-group justify-content-center">
       <div class="pl-lg-2" *ngFor="let element of _datos">
+        
         <div class="card h-100 shadow mt-1" style="width: 18rem">
           <img
             class="file-upload-image d-flex justify-content-center"
@@ -55,16 +56,15 @@
             <h5 class="card-title">{{ element.nombre }}</h5>
             <p class="card-text">{{ element.descripcion }}</p>
             <p class="card-text">{{ element.costo | currency: "Q" }}</p>
-            <a class="btn btn-primary" (click)="modificar(element)"
-              >Modificar</a
-            >
-            <a
-              class="btn btn-danger"
-              (click)="openDialog(modalEliminar, element)"
-              >Eliminar</a
-            >
+          </div>
+          <div class="card-footer text-center">
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+              <a class="btn btn-primary" (click)="modificar(element)">Modificar</a>
+              <a class="btn btn-danger" (click)="openDialog(modalEliminar, element)">Eliminar</a>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
