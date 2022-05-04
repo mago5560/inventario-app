@@ -34,6 +34,22 @@ import { StorageService } from "./storage.service";
         return this.http.get<ProveedorLaboratorio>(`${this.url}/proveedor-lab/${id}`, { headers: reqHeader })
       }
 
+      listarPorIdProveedor( id: number): Observable<ProveedorLaboratorio[]>{
+        var reqHeader = new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded;application/json; charset=utf-8'
+           //,'Authorization': 'Bearer ' + this.storageService.getCurrentToken()
+        })
+        return this.http.get<ProveedorLaboratorio[]>(`${this.url}/proveedor-lab/proveedor/${id}`, { headers: reqHeader })
+      }
+
+      listarPorProveedorLaboratorio( idProveedor: number, idLab: number): Observable<ProveedorLaboratorio[]>{
+        var reqHeader = new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded;application/json; charset=utf-8'
+           //,'Authorization': 'Bearer ' + this.storageService.getCurrentToken()
+        })
+        return this.http.get<ProveedorLaboratorio[]>(`${this.url}/proveedor-lab/idProveedor-Idlab/${idProveedor}/${idLab}`, { headers: reqHeader })
+      }
+
       listarDescripcion( descripcion: string): Observable<ProveedorLaboratorio[]>{
         var reqHeader = new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded;application/json; charset=utf-8'

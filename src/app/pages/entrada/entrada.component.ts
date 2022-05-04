@@ -37,7 +37,7 @@ export class EntradaComponent implements OnInit {
     this.modalService.open(modalEliminar, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       //Aceptar
       this.service.eliminar(data.idEntrada).subscribe(data => {       
-        this.toastr.success("Registro eliminado correctamente", "Mensaje del Sistema");
+        //this.toastr.success("Registro eliminado correctamente", "Mensaje del Sistema");
         this.buscar();
       }) 
       
@@ -62,7 +62,7 @@ export class EntradaComponent implements OnInit {
     }else{
       this.service.listar().subscribe(data =>{
         this._datos=data;
-        console.log(this._datos)
+        //console.log(this._datos)
         if(this._datos.length == 0){
           this.toastr.info("No se encontraro registos", "Mensaje del Sistema");
         }

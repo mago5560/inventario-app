@@ -12,6 +12,9 @@ import { SucursalService } from 'src/app/service/sucursal.service';
 import { EntradaDetalle } from 'src/app/model/entradadetalle';
 import { Producto } from 'src/app/model/producto';
 import { ProductoService } from 'src/app/service/producto.service';
+import { Proveedor } from 'src/app/model/proveedor';
+import { Laboratorio } from 'src/app/model/laboratorio';
+import { ProveedorService } from 'src/app/service/proveedor.service';
 
 @Component({
   selector: 'app-entradatecleo',
@@ -22,8 +25,15 @@ import { ProductoService } from 'src/app/service/producto.service';
 
 export class EntradatecleoComponent implements OnInit {
 
+
   public datosSucursal: Sucursal[] = [];
   public selectIdSucursal:number=0;
+
+  public datosProveedor: Proveedor[]=[];
+  public selectIdProveedor:number=0;
+
+  //public datosLaboratorio: Laboratorio[]=[];
+  //public selectIdLaboratorio:number=0;
 
   public datosProveedorLaboratorio: ProveedorLaboratorio[]=[];
   public selectIdProveedorLaboratorio:number=0;
@@ -42,6 +52,7 @@ export class EntradatecleoComponent implements OnInit {
     private serviceSucursal: SucursalService,
     private serviceProveedorLaboratorio: ProveedorLaboratorioService,
     private serviceProducto: ProductoService,
+    private serviceProveedor: ProveedorService,
     private router: Router,public rutaActiva: ActivatedRoute,private toastr: ToastrService,
     private config: NgbModalConfig,
     private modalService: NgbModal,
@@ -90,9 +101,14 @@ export class EntradatecleoComponent implements OnInit {
   obtenerDatos(id:number){
     if(id>0){
       this.service.listarPorId(id).subscribe(data =>{
+        
         this.cls=data;      
+        console.log(this.cls)
         this._datos = data.entradaDetalle;
-         this.cls.fecha = this.datePipe.transform(this.cls.fecha,"yyyy-MM-dd") 
+         this.cls.fecha = this.datePipe.transform(this.cls.fecha,"yyyy-MM-dd")
+         this.selectIdSucursal = this.cls.sucursal.idSucursal
+         this.selectIdProveedor = this.cls.proveedorLaboratorio.proveedor.idProveedor
+         this.selectIdProveedorLaboratorio = this.cls.proveedorLaboratorio.idProveedorLaboratorio 
       })
     }else{
       this.cls.fecha = this.datePipe.transform(new Date(),"yyyy-MM-dd");
@@ -108,6 +124,7 @@ export class EntradatecleoComponent implements OnInit {
       this.service.listarPorId(this.cls.idEntrada).subscribe(data =>{
         this._datos =[]
         this._datos = data.entradaDetalle; 
+
       })
     }else{
       
@@ -122,8 +139,9 @@ export class EntradatecleoComponent implements OnInit {
   }
 
   gabarDetalle(){
-    this.serviceProducto.listarPorId(this.selectIdProducto).subscribe(data=>{
-      this.clsDetalle.producto = data;
+    if(this.validarDatos()){
+      let selectProducto = this.datosProducto.find(c => c.idProducto = this.selectIdProducto);
+      this.clsDetalle.producto = selectProducto;
       //console.log(this.clsDetalle)
       this.clsDetalle.subTotal = this.clsDetalle.cantidad * this.clsDetalle.valor
       this.clsDetalle.fechaVencimiento = this.datePipe.transform(this.clsDetalle.fechaVencimiento,"yyyy-MM-dd'T'HH:mm")
@@ -131,7 +149,38 @@ export class EntradatecleoComponent implements OnInit {
       this.toastr.success("Registro Grabado", "Mensaje del Sistema"); 
       this.calcularTotal(this._datos)
       this.clsDetalle = new EntradaDetalle;
-    })
+    }
+  
+  }
+
+  validarDatos(): boolean{
+
+    if(this.selectIdProducto == 0){
+      this.toastr.show("El campo producto es requerido","Mensaje del Sistema")
+      return false;
+    }
+
+    if(this.clsDetalle.cantidad == 0){
+      this.toastr.show("El campo cantidad debe de ser mayor a 0","Mensaje del Sistema")
+      return false;
+    }
+
+    if(this.clsDetalle.valor == 0){
+      this.toastr.show("El campo valor debe de ser mayor a 0","Mensaje del Sistema")
+      return false;
+    }
+
+    if(!this.clsDetalle.fechaVencimiento){
+      this.toastr.show("El campo fecha vencimiento es requerido","Mensaje del Sistema")
+      return false;
+    }
+
+    if(this.clsDetalle.numeroLote == 0){
+      this.toastr.show("El campo numero de lote es requerido.","Mensaje del Sistema")
+      return false;
+    }
+
+    return true;
   }
 
 
@@ -143,24 +192,24 @@ export class EntradatecleoComponent implements OnInit {
   openDialogFinalizar(modalFinalizarEntrega) {
     this.modalService.open(modalFinalizarEntrega, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       //Aceptar
-      let selectSucursal = this.datosSucursal.find(c => c.idSucursal = this.selectIdSucursal);
-      let selectProveedorLaboratorio = this.datosProveedorLaboratorio.find(c => c.idProveedorLaboratorio = this.selectIdProveedorLaboratorio)
-      this.cls.sucursal = selectSucursal
-      this.cls.proveedorLaboratorio = selectProveedorLaboratorio;
 
-      this.cls.entradaDetalle = this._datos
-      this.cls.fecha =  this.datePipe.transform(this.cls.fecha,"yyyy-MM-dd'T'HH:mm")
-      console.log(this.cls)
-      this.service.registrar(this.cls).subscribe(data => {       
-        this.toastr.success("Registro eliminado correctamente", "Mensaje del Sistema");
-        this.cls.idEntrada = data.idEntrada;
-        this.buscar();
-      },error =>{
-        console.log(error)
-        this.toastr.error(error,"Mensaje del Sistema");
-      })
-
-
+      if(this.selectIdProveedorLaboratorio > 0){
+        let selectSucursal = this.datosSucursal.find(c => c.idSucursal = this.selectIdSucursal);
+        let selectProveedorLaboratorio = this.datosProveedorLaboratorio.find(c => c.idProveedorLaboratorio = this.selectIdProveedorLaboratorio)
+        this.cls.sucursal = selectSucursal
+        this.cls.proveedorLaboratorio = selectProveedorLaboratorio;
+        this.cls.entradaDetalle = this._datos
+        this.cls.fecha =  this.datePipe.transform(this.cls.fecha,"yyyy-MM-dd'T'HH:mm")
+        this.service.registrar(this.cls).subscribe(data => {       
+          this.toastr.success("Registro grabado correctamente", "Mensaje del Sistema");
+          this.cerrar()
+        },error =>{
+          console.log(error)
+          this.toastr.error(error,"Mensaje del Sistema");
+        })
+      }else{
+        this.toastr.error("Debe de seleccionar un Proveedor Laboratorio para finalizar","Mensaje del sistema")
+      }
     }, (reason) => {
       //Cerrar
 
@@ -191,6 +240,7 @@ export class EntradatecleoComponent implements OnInit {
         this.selectIdProveedorLaboratorio = this.datosProveedorLaboratorio[0].idProveedorLaboratorio
       }
     })
+    
 
 
     this.serviceSucursal.listar().subscribe(data=>{
@@ -202,6 +252,25 @@ export class EntradatecleoComponent implements OnInit {
 
     this.serviceProducto.listar().subscribe(data=>{
       this.datosProducto = data;
+    })
+
+    this.serviceProveedor.listar().subscribe(data =>{
+      this.datosProveedor = data;
+      if (data){
+        this.selectIdProveedor = this.datosProveedor[0].idProveedor
+      }
+    })
+
+  }
+
+
+  selectedChangeProveedor(){
+    this.serviceProveedorLaboratorio.listarPorIdProveedor(this.selectIdProveedor).subscribe(data=>{
+      this.datosProveedorLaboratorio = data;
+      this.selectIdProveedorLaboratorio = 0;
+      if(data){
+        this.selectIdProveedorLaboratorio = this.datosProveedorLaboratorio[0].idProveedorLaboratorio
+      }
     })
   }
 

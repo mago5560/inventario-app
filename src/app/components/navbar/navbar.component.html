@@ -41,10 +41,10 @@
 
       <button
       type="button"
-      class="dropdown-item"
-      (click)="installByUser()">
-      
-      <span>Install App</span>
+      class="btn btn-primary"
+      (click)="installByUser()" *ngIf="installEvent == null" >
+      <i class="bi bi-display-fill"></i>
+      <span > Install App</span>
     </button>
 
   

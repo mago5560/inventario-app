@@ -34,6 +34,7 @@
                                 <label class="form-control-label" for="input-fecha"
                                 >Fecha</label>
                             <input
+                                [disabled]="cls.idEntrada > 0"
                                 type="date"
                                 id="input-fecha"
                                 [(ngModel)]="cls.fecha"
@@ -44,34 +45,14 @@
                             />
                         </div>
                     </div>
-                    
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="select-proveedorLaboratorio"
-                              >Seleccione Proveedor Laboratorio</label
-                            >
-                            <select
-                              id="select-producto"
-                              name="producto"
-                              [(ngModel)]="selectIdProveedorLaboratorio"
-                              class="form-control form-control-alternative"
-                            >
-                              <option
-                                *ngFor="let _proveedorLaboratorio of datosProveedorLaboratorio"
-                                value="{{ _proveedorLaboratorio.idProveedorLaboratorio }}"
-                              >
-                                {{ _proveedorLaboratorio.proveedor.nombreComercial }}
-                              </option>
-                            </select>
-                          </div>
-                      </div>
-
-                    <div class="col-lg-4 col-md-12 col-sm-12">
+                   
+                    <div class="col-lg-8 col-md-12 col-sm-12">
                     <div class="form-group">
                         <label class="form-control-label" for="select-sucursal"
                           >Seleccione Sucursal</label
                         >
                         <select
+                          [disabled]="cls.idEntrada > 0"
                           id="select-sucursal"
                           name="sucursal"
                           [(ngModel)]="selectIdSucursal"
@@ -88,6 +69,54 @@
                   </div>
                 
                 </div>
+
+                <div class="row">
+                  <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="form-control-label" for="select-proveedor"
+                          >Seleccione Proveedor </label
+                        >
+                        <select
+                          [disabled]="cls.idEntrada > 0"
+                          id="select-proveedor"
+                          name="proveedor"
+                          (change)="selectedChangeProveedor()"
+                          [(ngModel)]="selectIdProveedor"
+                          class="form-control form-control-alternative"
+                        >
+                          <option
+                            *ngFor="let _proveedor of datosProveedor"
+                            value="{{ _proveedor.idProveedor }}"
+                          >
+                            {{ _proveedor.nombreComercial}}
+                          </option>
+                        </select>
+                      </div>
+                  </div>
+                
+                  
+                  <div class="col-lg-6 col-md-12 col-sm-12">
+                      <div class="form-group">
+                          <label class="form-control-label" for="select-proveedorLaboratorio"
+                            >Seleccione Proveedor Laboratorio</label
+                          >
+                          <select
+                            [disabled]="cls.idEntrada > 0"  
+                            id="select-proveedorLaboratorio"
+                            name="proveedorLaboratorio"
+                            [(ngModel)]="selectIdProveedorLaboratorio"
+                            class="form-control form-control-alternative"
+                          >
+                            <option
+                              *ngFor="let _proveedorLaboratorio of datosProveedorLaboratorio"
+                              value="{{ _proveedorLaboratorio.idProveedorLaboratorio }}"
+                            >
+                              {{ _proveedorLaboratorio.laboratorio.nombre }}
+                            </option>
+                          </select>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="row align-items-center">
 
@@ -101,7 +130,7 @@
                       >Cancelar</a
                     >
                     <a class="btn btn-lg btn-primary"  (click)="openDialogFinalizar(modalFinalizarEntrega)"
-                      *ngIf="this._datos.length && this.cls.idEntrada==0"
+                      *ngIf="this._datos.length && cls.idEntrada==0"
                       >Finalizar</a
                     >
                   </div>
@@ -209,9 +238,10 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-2 text-right">
+                  <div class="col-lg-2 text-right" >
                     <br/>
-                    <a (click)="gabarDetalle()" class="btn btn-lg btn-primary"
+                    <a (click)="gabarDetalle()"  class="btn btn-lg btn-primary"
+                    *ngIf="cls.idEntrada==0"
                       >Agregar</a
                     >
                   </div>
